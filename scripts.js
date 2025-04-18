@@ -15,6 +15,14 @@ map.addControl(
 );
 
 map.on('load', () => {
+    // add mapbox-gl-globe-minimap plugin
+    map.addControl(
+        new GlobeMinimap({
+            landColor: "#4ebf6e",
+            waterColor: "#8dcbe3"
+        }),
+        "bottom-right"
+    );
 
     map.addSource('earthquakes', {
         type: 'geojson',
@@ -39,7 +47,7 @@ map.on('load', () => {
         3, 8,      // mag = 3 -> radius = 8
         5, 14,     // mag = 5 -> radius = 14
         7, 22      // mag = 7 -> radius = 22
-      ]
+    ]
 
 
     map.addLayer({
@@ -52,9 +60,9 @@ map.on('load', () => {
             "circle-opacity": 0.6,
             "circle-stroke-color": "#fff",
             "circle-stroke-width": 1
-          }
+        }
     })
-    
+
     map.addLayer({
         'id': 'active-earthquake',
         type: 'circle',
@@ -75,7 +83,7 @@ map.on('click', 'circle-earthquakes', (e) => {
     })
 
     // if there are no features, return
-    if (features.length > 0 ) {
+    if (features.length > 0) {
 
         // populate the sidebar with properties of the top-most earthquake feature
         document.getElementById('eq-place').innerHTML = features[0].properties.place;
@@ -102,7 +110,7 @@ document.getElementById('fly-aleutian').addEventListener('click', () => {
 
 document.getElementById('fly-japan').addEventListener('click', () => {
     map.fitBounds([
-        [111.96593, 25.68929], 
+        [111.96593, 25.68929],
         [160.29855, 44.04752]
     ], {
         padding: 40
