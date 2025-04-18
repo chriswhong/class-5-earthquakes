@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Earthquake Data Demo Map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css" type="text/css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="main-container">
+        <nav>
+            <div class="title">Earthquake Data Demo Map</div>
+            <div class="nav-links">
+                <a class="nav-link" href="https://github.com/chriswhong/responsive-web-map-layout" target="_blank"
+                    rel="noopener noreferrer">Github</a>
+            </div>
+
+        </nav>
+        <div id="content-container">
+            <div id="sidebar">
+                <p>Click an earthquake to explore its details.</p>
+                <div id="earthquake-details">
+                    <h3 style="margin-top: 0; color: #333;">Earthquake Details</h3>
+                    <p><strong>Place:</strong> <span id="eq-place"></span></p>
+                    <p><strong>Magnitude:</strong> <span id="eq-mag"></span></p>
+                    <p><strong>Time:</strong> <span id="eq-time"></span></p>
+                </div>
+
+                <button id="fly-aleutian" class="fly-button">
+                    Fly to Aleutian Islands
+                </button>
+
+                <button id="fly-japan" class="fly-button">
+                    Fly to Japan
+                </button>
+
+                <button id="toggle-earthquakes" class="fly-button">
+                    Hide Earthquakes
+                </button>
+            </div>
+            <div id="map"></div>
+        </div>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js
+"></script>
+  
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+
+
+
+    <script src="./scripts.js"></script>
+</body>
+
+</html>
