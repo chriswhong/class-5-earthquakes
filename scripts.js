@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXN3aG9uZ21hcGJveCIsImEiOiJjbDl6bzJ6N3EwM
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v12',
+    style: 'mapbox://styles/cwhong/cm9w0apsu003r01se4jht4r8z',
     center: [-74.5, 40],
     zoom: 2
 });
@@ -34,6 +34,29 @@ map.on('load', () => {
         data: {
             type: 'FeatureCollection',
             features: []
+        }
+    })
+
+    map.addSource('subway-routes', {
+        type: 'geojson',
+        data: './subway-routes.geojson'
+    })
+
+    map.addLayer({
+        id: 'subway-routes',
+        type: 'line',
+        source: 'subway-routes',
+        paint: {
+            'line-width': {
+                stops: [
+                    [
+                        10, 1
+                    ],
+                    [
+                        14, 10
+                    ]
+                ]
+            }
         }
     })
 
@@ -136,4 +159,31 @@ document.getElementById('toggle-earthquakes').addEventListener('click', () => {
     }
 })
 
+// noui slider code
+
+var slider = document.getElementById('slider');
+
+noUiSlider.create(slider, {
+    start: [0, 7],
+    connect: true,
+    range: {
+        'min': 0,
+        'max': 7
+    }
+});
+
+slider.noUiSlider.on('slide', function (values) {
+    console.log('SLIDER WAS CHANGED', values)
+    const min = parseFloat(values[0]);
+    const max = parseFloat(values[1]);
+
+    console.log(min, max)
+
+    // use the min and max values from the slider to filter the earthquake layer
+    map.setFilter('circle-earthquakes', [
+        'all',
+        ['>=', ['get', 'mag'], min],
+        ['<=', ['get', 'mag'], max]
+    ])
+})
 
